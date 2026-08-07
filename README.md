@@ -39,3 +39,4 @@ Then visit `http://localhost:8080`.
 - Replace the download button `href="#"` in `index.html` (Download section) with your real installer link once it's hosted somewhere.
 - Social links in the footer are placeholders — update the `href="#"` values.
 - Colors, type, and spacing are all defined as CSS variables at the top of `style.css`.
+"# NexMusic-Website" 
