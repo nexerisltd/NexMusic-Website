@@ -5,11 +5,29 @@ Static site — no build step, no dependencies. Just HTML, CSS, and JS.
 
 ## Structure
 ```
-index.html    → page markup
-style.css     → design system + styles
-script.js     → nav, scroll reveal, player preview interactions
-assets/       → logo, cover art, favicon
+index.html                  → home page
+privacy-policy.html         → Privacy Policy
+terms-and-conditions.html   → Terms & Conditions
+style.css                   → design system + styles (light theme)
+script.js                   → nav, 3D tilt, GSAP ScrollTrigger scroll sequence, player controls
+assets/                     → logo, cover art, favicon
+assets/vendor/               → GSAP + ScrollTrigger, vendored locally (no external CDN calls)
 ```
+
+The "Get NexMusic" / "Get the app" buttons link out to
+`https://nexappog.vercel.app/nexmusic`. Update that URL in `index.html`,
+`privacy-policy.html`, and `terms-and-conditions.html` if it ever changes.
+
+The Privacy Policy and Terms & Conditions are original starting-point drafts —
+have them reviewed before relying on them for App Store / Play Store submission
+or other legal compliance.
+
+## About the 3D scroll effect
+The "Now Playing" section pins in place while you scroll and rotates from an angled
+3D perspective into a flat, face-on card, with small info chips popping out in depth
+around it. It's built with GSAP ScrollTrigger driving CSS 3D transforms — no WebGL
+or 3D models needed. On touch devices (phones/tablets) it gracefully falls back to a
+flat, static card so it stays fast and doesn't fight with normal scrolling.
 
 ## Deploy on Vercel (from GitHub)
 
@@ -39,4 +57,3 @@ Then visit `http://localhost:8080`.
 - Replace the download button `href="#"` in `index.html` (Download section) with your real installer link once it's hosted somewhere.
 - Social links in the footer are placeholders — update the `href="#"` values.
 - Colors, type, and spacing are all defined as CSS variables at the top of `style.css`.
-"# NexMusic-Website" 
