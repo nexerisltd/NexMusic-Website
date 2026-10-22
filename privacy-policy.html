@@ -5,28 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — NexMusic</title>
 <meta name="description" content="How NexMusic collects, uses, and protects your information across desktop and mobile.">
-<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7fd" id="themeColor">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<script>
+/* apply saved / system theme before first paint (no flash) */
+(function(){var d=document.documentElement,t;d.classList.add('js');
+try{t=localStorage.getItem('nx-theme')}catch(e){}
+if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+d.setAttribute('data-theme',t);
+var m=document.getElementById('themeColor');if(m)m.content=t==='dark'?'#07070f':'#f6f7fd';})();
+</script>
+
+<link rel="preload" href="assets/fonts/sora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
-<div class="grain"></div>
-
+<!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.webp" alt="NexMusic" class="brand-mark">
+    <a href="index.html" class="brand" aria-label="NexMusic home">
+      <img src="assets/logo-nav.webp" alt="" width="42" height="30" class="brand-mark">
       <span class="brand-name">Nex<em>Music</em></span>
     </a>
-    <nav class="nav-links" id="navLinks">
+
+    <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="index.html#features">Features</a>
       <a href="index.html#player">Preview</a>
       <a href="index.html#about">About</a>
     </nav>
+
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1110 4.2 6.8 6.8 0 0020 14.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </button>
       <a href="https://nexappog.vercel.app/shop/nexmusic" target="_blank" rel="noopener" class="btn btn-ghost">Get the app</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -36,6 +55,7 @@
 </header>
 
 <main>
+  <div class="legal-bg" aria-hidden="true"></div>
   <section class="legal-hero">
     <a href="index.html" class="legal-nav-back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m0 0l6 6m-6-6l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -155,15 +175,17 @@
   </section>
 </main>
 
+<!-- ============ FOOTER ============ -->
 <footer class="footer" id="about">
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="index.html" class="brand">
-        <img src="assets/logo.webp" alt="NexMusic" class="brand-mark">
+        <img src="assets/logo-nav.webp" alt="" width="42" height="30" class="brand-mark" loading="lazy">
         <span class="brand-name">Nex<em>Music</em></span>
       </a>
       <p>Music streaming platform · Powered by <strong>NexApp</strong></p>
     </div>
+
     <div class="footer-links">
       <div class="footer-col">
         <h4>Product</h4>
@@ -186,12 +208,15 @@
       </div>
     </div>
   </div>
+
+  <div class="footer-mark" aria-hidden="true">NexMusic</div>
+
   <div class="footer-bottom">
-    <p>© <span id="year"></span> NexApp. All rights reserved.</p>
+    <p>© <span id="year">2026</span> NexApp. All rights reserved.</p>
     <p>Developed by <strong>MR. ARX</strong></p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>

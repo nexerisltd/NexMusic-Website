@@ -5,40 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexMusic — Feel Every Beat. Live Every Moment.</title>
 <meta name="description" content="NexMusic is a music streaming app for desktop and mobile — millions of songs, personalized picks, high-quality audio, and offline downloads. Built by NexApp.">
-
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7fd" id="themeColor">
 <meta property="og:title" content="NexMusic — Feel Every Beat. Live Every Moment.">
 <meta property="og:description" content="Millions of songs. Personalized for you. On desktop and mobile, online or off.">
 <meta property="og:image" content="assets/cover.webp">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/logo-hero.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="assets/logo-512.png">
+<script>
+/* apply saved / system theme before first paint (no flash) */
+(function(){var d=document.documentElement,t;d.classList.add('js');
+try{t=localStorage.getItem('nx-theme')}catch(e){}
+if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+d.setAttribute('data-theme',t);
+var m=document.getElementById('themeColor');if(m)m.content=t==='dark'?'#07070f':'#f6f7fd';})();
+</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link rel="preload" href="assets/fonts/sora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="grain"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand">
-      <img src="assets/logo.webp" alt="NexMusic" class="brand-mark">
+    <a href="#top" class="brand" aria-label="NexMusic home">
+      <img src="assets/logo-nav.webp" alt="" width="42" height="30" class="brand-mark">
       <span class="brand-name">Nex<em>Music</em></span>
     </a>
 
-    <nav class="nav-links" id="navLinks">
+    <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="#features">Features</a>
       <a href="#player">Preview</a>
       <a href="#about">About</a>
     </nav>
 
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1110 4.2 6.8 6.8 0 0020 14.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </button>
       <a href="https://nexappog.vercel.app/shop/nexmusic" target="_blank" rel="noopener" class="btn btn-ghost">Get the app</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -50,25 +62,22 @@
 <main id="top">
 
   <!-- ============ HERO — 3D tilt stage ============ -->
-  <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="glow glow-blue"></div>
-      <div class="glow glow-pink"></div>
-    </div>
+  <section class="hero" data-pause>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <div class="hero-inner">
-      <div class="hero-copy" data-fade>
-        <p class="eyebrow"><span class="eyebrow-dot"></span>Desktop &amp; Mobile</p>
+      <div class="hero-copy">
+        <p class="eyebrow pill rise" style="--d:0"><span class="eyebrow-dot"></span>Desktop &amp; Mobile</p>
         <h1 class="hero-title">
-          Feel Every <span class="grad-text">Beat</span>.<br>
-          Live Every <span class="grad-text alt">Moment</span>.
+          <span class="line"><span class="w"><span class="wi" style="--i:0">Feel</span></span> <span class="w"><span class="wi" style="--i:1">Every</span></span> <span class="w"><span class="wi" style="--i:2"><span class="grad-text">Beat</span>.</span></span></span>
+          <span class="line"><span class="w"><span class="wi" style="--i:3">Live</span></span> <span class="w"><span class="wi" style="--i:4">Every</span></span> <span class="w"><span class="wi" style="--i:5"><span class="grad-text alt">Moment</span>.</span></span></span>
         </h1>
-        <p class="hero-sub">
+        <p class="hero-sub rise" style="--d:520">
           NexMusic follows you from your desk to your pocket — millions of tracks, tuned to
           your taste, streamed in high quality, and yours to keep offline, on any screen.
         </p>
 
-        <div class="hero-cta">
+        <div class="hero-cta rise" style="--d:640">
           <a href="https://nexappog.vercel.app/shop/nexmusic" target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Get NexMusic
@@ -76,7 +85,7 @@
           <a href="#player" class="btn btn-outline">See it in action</a>
         </div>
 
-        <div class="hero-stats">
+        <div class="hero-stats rise" style="--d:780">
           <div class="stat"><span class="stat-icon">♪</span>Millions of songs</div>
           <div class="stat"><span class="stat-icon">♥</span>Personalized for you</div>
           <div class="stat"><span class="stat-icon">◐</span>High quality streaming</div>
@@ -84,18 +93,19 @@
         </div>
       </div>
 
-      <!-- 3D tilt stage: mouse-tracked perspective card -->
-      <div class="hero-art" data-fade style="--delay:120ms">
+      <div class="hero-art">
         <div class="tilt-stage" id="tiltStage">
+          <div class="stage-glow" aria-hidden="true"></div>
           <div class="tilt-inner" id="tiltInner">
-            <div class="tilt-layer layer-ring ring-1" style="--depth:20px"></div>
-            <div class="tilt-layer layer-ring ring-2" style="--depth:40px"></div>
-            <img src="assets/logo.webp" alt="NexMusic logo" class="tilt-layer hero-logo" style="--depth:70px">
+            <div class="tilt-layer layer-ring ring-1" style="--depth:20px" aria-hidden="true"></div>
+            <div class="tilt-layer layer-ring ring-2" style="--depth:40px" aria-hidden="true"></div>
+            <img src="assets/logo-hero.webp" alt="NexMusic logo" width="440" height="317" fetchpriority="high" decoding="async" class="tilt-layer hero-logo" style="--depth:70px">
             <div class="tilt-layer mini-eq" style="--depth:100px" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
             <div class="tilt-layer chip chip-a" style="--depth:130px">Lossless</div>
             <div class="tilt-layer chip chip-b" style="--depth:150px">Offline ready</div>
+            <div class="tilt-layer chip chip-c" style="--depth:110px" aria-hidden="true"><span class="mini-bars"><i></i><i></i><i></i></span>Now playing</div>
           </div>
         </div>
       </div>
@@ -103,52 +113,80 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Discover</span><i>·</i><span>Stream</span><i>·</i><span>Love</span><i>·</i><span>Repeat</span><i>·</i>
-        <span>Discover</span><i>·</i><span>Stream</span><i>·</i><span>Love</span><i>·</i><span>Repeat</span><i>·</i>
-        <span>Discover</span><i>·</i><span>Stream</span><i>·</i><span>Love</span><i>·</i><span>Repeat</span><i>·</i>
-        <span>Discover</span><i>·</i><span>Stream</span><i>·</i><span>Love</span><i>·</i><span>Repeat</span><i>·</i>
+        <div class="marquee-half"><span>Discover</span><i>✦</i><span>Stream</span><i>✦</i><span>Love</span><i>✦</i><span>Repeat</span><i>✦</i><span>Discover</span><i>✦</i><span>Stream</span><i>✦</i><span>Love</span><i>✦</i><span>Repeat</span><i>✦</i></div>
+        <div class="marquee-half"><span>Discover</span><i>✦</i><span>Stream</span><i>✦</i><span>Love</span><i>✦</i><span>Repeat</span><i>✦</i><span>Discover</span><i>✦</i><span>Stream</span><i>✦</i><span>Love</span><i>✦</i><span>Repeat</span><i>✦</i></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FEATURES — 3D flip-in on scroll ============ -->
+  <!-- ============ FEATURES — bento ============ -->
   <section class="features" id="features">
     <div class="section-head" data-fade>
       <p class="eyebrow center">What you get</p>
-      <h2>One app, every reason to press play</h2>
+      <h2>One app, every reason to <span class="grad-text">press play</span></h2>
     </div>
 
-    <div class="feature-grid">
-      <article class="feature-card" data-flip>
-        <div class="feature-icon icon-blue">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+    <div class="bento" id="bento">
+      <article class="bcard s7" data-fade style="--delay:0ms" data-pause>
+        <div class="bviz" aria-hidden="true">
+          <div class="tiles">
+            <div class="tile-row"><i style="--a:#22d3ee;--b:#3b82f6"></i><i style="--a:#7c3aed;--b:#db2777"></i><i style="--a:#f59e0b;--b:#ef4444"></i><i style="--a:#3b82f6;--b:#7c3aed"></i><i style="--a:#10b981;--b:#06b6d4"></i><i style="--a:#ec4899;--b:#8b5cf6"></i><i style="--a:#fb923c;--b:#db2777"></i><i style="--a:#6366f1;--b:#22d3ee"></i><i style="--a:#a855f7;--b:#3b82f6"></i><i style="--a:#f43f5e;--b:#f59e0b"></i><i aria-hidden="true" style="--a:#22d3ee;--b:#3b82f6"></i><i aria-hidden="true" style="--a:#7c3aed;--b:#db2777"></i><i aria-hidden="true" style="--a:#f59e0b;--b:#ef4444"></i><i aria-hidden="true" style="--a:#3b82f6;--b:#7c3aed"></i><i aria-hidden="true" style="--a:#10b981;--b:#06b6d4"></i><i aria-hidden="true" style="--a:#ec4899;--b:#8b5cf6"></i><i aria-hidden="true" style="--a:#fb923c;--b:#db2777"></i><i aria-hidden="true" style="--a:#6366f1;--b:#22d3ee"></i><i aria-hidden="true" style="--a:#a855f7;--b:#3b82f6"></i><i aria-hidden="true" style="--a:#f43f5e;--b:#f59e0b"></i></div>
+            <div class="tile-row rev"><i style="--a:#ec4899;--b:#8b5cf6"></i><i style="--a:#fb923c;--b:#db2777"></i><i style="--a:#6366f1;--b:#22d3ee"></i><i style="--a:#a855f7;--b:#3b82f6"></i><i style="--a:#f43f5e;--b:#f59e0b"></i><i style="--a:#22d3ee;--b:#3b82f6"></i><i style="--a:#7c3aed;--b:#db2777"></i><i style="--a:#f59e0b;--b:#ef4444"></i><i style="--a:#3b82f6;--b:#7c3aed"></i><i style="--a:#10b981;--b:#06b6d4"></i><i aria-hidden="true" style="--a:#ec4899;--b:#8b5cf6"></i><i aria-hidden="true" style="--a:#fb923c;--b:#db2777"></i><i aria-hidden="true" style="--a:#6366f1;--b:#22d3ee"></i><i aria-hidden="true" style="--a:#a855f7;--b:#3b82f6"></i><i aria-hidden="true" style="--a:#f43f5e;--b:#f59e0b"></i><i aria-hidden="true" style="--a:#22d3ee;--b:#3b82f6"></i><i aria-hidden="true" style="--a:#7c3aed;--b:#db2777"></i><i aria-hidden="true" style="--a:#f59e0b;--b:#ef4444"></i><i aria-hidden="true" style="--a:#3b82f6;--b:#7c3aed"></i><i aria-hidden="true" style="--a:#10b981;--b:#06b6d4"></i></div>
+          </div>
         </div>
-        <h3>Millions of songs</h3>
-        <p>From chart-toppers to deep cuts — a catalog wide enough that you never run out of next.</p>
+        <div class="bbody">
+          <div class="feature-icon icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Millions of songs</h3>
+          <p>From chart-toppers to deep cuts — a catalog wide enough that you never run out of next.</p>
+        </div>
       </article>
 
-      <article class="feature-card" data-flip>
-        <div class="feature-icon icon-purple">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <article class="bcard s5" data-fade style="--delay:100ms" data-pause>
+        <div class="bviz" aria-hidden="true">
+          <div class="ripples"><span class="r"></span><span class="r"></span><span class="r"></span><div class="heart-core"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg></div>
+            <b class="mix-chip">Chill</b><b class="mix-chip">Focus</b><b class="mix-chip">Late night</b><b class="mix-chip">Workout</b>
+          </div>
         </div>
-        <h3>Personalized for you</h3>
-        <p>Mixes and radio that learn what you skip and what you replay, and get sharper every day.</p>
+        <div class="bbody">
+          <div class="feature-icon icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Personalized for you</h3>
+          <p>Mixes and radio that learn what you skip and what you replay, and get sharper every day.</p>
+        </div>
       </article>
 
-      <article class="feature-card" data-flip>
-        <div class="feature-icon icon-cyan">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h3l2-6 4 12 2-8 2 4h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <article class="bcard s5" data-fade style="--delay:0ms" data-pause>
+        <div class="bviz" aria-hidden="true">
+          <span class="viz-tag">320 kbps · Lossless</span>
+          <div class="spectrum"><i style="--lo:0.28;--hi:0.66;animation-delay:-1.17s"></i><i style="--lo:0.20;--hi:0.81;animation-delay:-0.66s"></i><i style="--lo:0.20;--hi:0.80;animation-delay:-0.07s"></i><i style="--lo:0.32;--hi:0.63;animation-delay:-0.16s"></i><i style="--lo:0.32;--hi:0.93;animation-delay:-0.22s"></i><i style="--lo:0.25;--hi:0.85;animation-delay:-1.71s"></i><i style="--lo:0.36;--hi:0.76;animation-delay:-1.76s"></i><i style="--lo:0.19;--hi:0.94;animation-delay:-0.52s"></i><i style="--lo:0.23;--hi:0.65;animation-delay:-0.56s"></i><i style="--lo:0.44;--hi:0.67;animation-delay:-1.05s"></i><i style="--lo:0.38;--hi:0.75;animation-delay:-0.99s"></i><i style="--lo:0.20;--hi:0.62;animation-delay:-0.37s"></i><i style="--lo:0.40;--hi:0.77;animation-delay:-0.57s"></i><i style="--lo:0.37;--hi:0.78;animation-delay:-0.54s"></i><i style="--lo:0.43;--hi:0.88;animation-delay:-0.44s"></i><i style="--lo:0.36;--hi:0.81;animation-delay:-1.58s"></i><i style="--lo:0.41;--hi:0.72;animation-delay:-1.76s"></i><i style="--lo:0.22;--hi:0.77;animation-delay:-1.36s"></i><i style="--lo:0.23;--hi:0.80;animation-delay:-0.07s"></i><i style="--lo:0.39;--hi:0.91;animation-delay:-1.03s"></i><i style="--lo:0.46;--hi:0.73;animation-delay:-1.25s"></i><i style="--lo:0.37;--hi:0.83;animation-delay:-0.82s"></i><i style="--lo:0.45;--hi:0.98;animation-delay:-0.85s"></i><i style="--lo:0.39;--hi:0.62;animation-delay:-1.26s"></i><i style="--lo:0.39;--hi:1.00;animation-delay:-1.48s"></i><i style="--lo:0.27;--hi:0.75;animation-delay:-1.20s"></i><i style="--lo:0.19;--hi:0.78;animation-delay:-0.30s"></i><i style="--lo:0.22;--hi:0.62;animation-delay:-1.38s"></i><i style="--lo:0.22;--hi:0.70;animation-delay:-0.70s"></i><i style="--lo:0.46;--hi:0.63;animation-delay:-0.81s"></i></div>
         </div>
-        <h3>High quality streaming</h3>
-        <p>Studio-grade audio that holds up on real speakers, not just earbuds on the bus.</p>
+        <div class="bbody">
+          <div class="feature-icon icon-cyan">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12h3l2-6 4 12 2-8 2 4h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>High quality streaming</h3>
+          <p>Studio-grade audio that holds up on real speakers, not just earbuds on the bus.</p>
+        </div>
       </article>
 
-      <article class="feature-card" data-flip>
-        <div class="feature-icon icon-pink">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <article class="bcard s7" data-fade style="--delay:100ms" data-pause>
+        <div class="bviz" aria-hidden="true">
+          <div class="dl">
+            <div class="dl-row" style="--a:#22d3ee;--b:#3b82f6;--d:0s"><span class="dl-art"></span><span class="dl-name">Night Drive<small>NexMusic Sessions</small></span><span class="dl-bar"><i></i></span><span class="dl-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="dl-row" style="--a:#7c3aed;--b:#db2777;--d:.9s"><span class="dl-art"></span><span class="dl-name">Orbit<small>NexMusic Sessions</small></span><span class="dl-bar"><i></i></span><span class="dl-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="dl-row" style="--a:#f59e0b;--b:#ef4444;--d:1.8s"><span class="dl-art"></span><span class="dl-name">Skyline<small>Your playlist</small></span><span class="dl-bar"><i></i></span><span class="dl-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          </div>
         </div>
-        <h3>Download &amp; offline</h3>
-        <p>Pull a playlist down before you fly, drive, or disappear off the grid entirely.</p>
+        <div class="bbody">
+          <div class="feature-icon icon-pink">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Download &amp; offline</h3>
+          <p>Pull a playlist down before you fly, drive, or disappear off the grid entirely.</p>
+        </div>
       </article>
     </div>
 
@@ -167,20 +205,20 @@
   <section class="player-section" id="player">
     <div class="section-head" data-fade>
       <p class="eyebrow center">Now playing</p>
-      <h2>Built around the moment you hit play</h2>
+      <h2>Built around the moment you <span class="grad-text alt">hit play</span></h2>
       <p class="section-sub">Scroll to bring it into focus — tap the lines icon for lyrics.</p>
     </div>
 
     <div class="player-pin-wrap" id="playerPinWrap">
       <div class="player-stage" id="playerStage">
+        <div class="player-halo" id="playerHalo" aria-hidden="true"></div>
         <div class="player-card" id="playerCard">
           <div class="player-glow" aria-hidden="true"></div>
 
-          <!-- artwork / lyrics swap area -->
-          <div class="pc-visual">
+          <div class="pc-visual" id="pcVisual">
             <div class="pc-art" id="pcArt">
               <div class="pc-art-bg"></div>
-              <img src="assets/logo.webp" alt="" class="pc-art-logo">
+              <img src="assets/logo-hero.webp" alt="" width="440" height="317" loading="lazy" decoding="async" class="pc-art-logo">
               <div class="pc-art-scrim"></div>
               <div class="pc-art-caption">
                 <span class="pc-caption-eyebrow">NexMusic Sessions presents</span>
@@ -206,38 +244,33 @@
               <button class="pc-icon-btn" aria-label="Download">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
-              <button class="pc-icon-btn" id="pcLike" aria-label="Like">
+              <button class="pc-icon-btn" id="pcLike" aria-label="Like" aria-pressed="false">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
               </button>
             </div>
           </div>
 
-          <div class="pc-scrub">
-            <svg class="pc-wave" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#22d3ee"/>
-                  <stop offset="55%" stop-color="#3b82f6"/>
-                  <stop offset="100%" stop-color="#db2777"/>
-                </linearGradient>
-              </defs>
-              <line x1="152" y1="12" x2="317" y2="12" stroke="rgba(255,255,255,.22)" stroke-width="2.4" stroke-linecap="round"/>
-              <path d="M2.00,12.00 L4.28,15.57 L6.55,17.00 L8.83,15.43 L11.11,11.81 L13.38,8.30 L15.66,7.01 L17.94,8.70 L20.22,12.38 L22.49,15.82 L24.77,16.98 L27.05,15.15 L29.32,11.44 L31.60,8.06 L33.88,7.04 L36.15,9.00 L38.43,12.75 L40.71,16.05 L42.98,16.93 L45.26,14.85 L47.54,11.07 L49.82,7.84 L52.09,7.11 L54.37,9.31 L56.65,13.12 L58.92,16.26 L61.20,16.85 L63.48,14.53 L65.75,10.70 L68.03,7.64 L70.31,7.20 L72.58,9.63 L74.86,13.48 L77.14,16.45 L79.42,16.75 L81.69,14.20 L83.97,10.34 L86.25,7.47 L88.52,7.32 L90.80,9.97 L93.08,13.84 L95.35,16.61 L97.63,16.62 L99.91,13.86 L102.18,9.99 L104.46,7.32 L106.74,7.46 L109.02,10.32 L111.29,14.18 L113.57,16.74 L115.85,16.46 L118.12,13.51 L120.40,9.65 L122.68,7.20 L124.95,7.63 L127.23,10.67 L129.51,14.51 L131.78,16.84 L134.06,16.28 L136.34,13.14 L138.62,9.33 L140.89,7.11 L143.17,7.83 L145.45,11.04 L147.72,14.83 L150.00,16.92"
-                fill="none" stroke="url(#waveGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="151" cy="14" r="5.5" fill="#fff"/>
-            </svg>
-            <div class="pc-times"><span>1:14</span><span>3:42</span></div>
+          <div class="pc-scrub" id="pcScrub">
+            <div class="pc-wave-wrap">
+              <svg class="pc-wave" viewBox="0 0 336 32" preserveAspectRatio="none" aria-hidden="true"><g fill="rgba(255,255,255,.24)"><rect x="0" y="11.9" width="3.4" height="8.2" rx="1.7"/><rect x="6" y="8.2" width="3.4" height="15.6" rx="1.7"/><rect x="12" y="5.3" width="3.4" height="21.4" rx="1.7"/><rect x="18" y="2.7" width="3.4" height="26.5" rx="1.7"/><rect x="24" y="2.4" width="3.4" height="27.3" rx="1.7"/><rect x="30" y="1.7" width="3.4" height="28.6" rx="1.7"/><rect x="36" y="2.7" width="3.4" height="26.6" rx="1.7"/><rect x="42" y="3.6" width="3.4" height="24.7" rx="1.7"/><rect x="48" y="6.3" width="3.4" height="19.4" rx="1.7"/><rect x="54" y="11.1" width="3.4" height="9.9" rx="1.7"/><rect x="60" y="11.2" width="3.4" height="9.6" rx="1.7"/><rect x="66" y="8.6" width="3.4" height="14.8" rx="1.7"/><rect x="72" y="6.9" width="3.4" height="18.2" rx="1.7"/><rect x="78" y="5.8" width="3.4" height="20.4" rx="1.7"/><rect x="84" y="5.9" width="3.4" height="20.2" rx="1.7"/><rect x="90" y="7.7" width="3.4" height="16.7" rx="1.7"/><rect x="96" y="9.7" width="3.4" height="12.6" rx="1.7"/><rect x="102" y="10.4" width="3.4" height="11.2" rx="1.7"/><rect x="108" y="11.7" width="3.4" height="8.6" rx="1.7"/><rect x="114" y="11.9" width="3.4" height="8.3" rx="1.7"/><rect x="120" y="10.9" width="3.4" height="10.2" rx="1.7"/><rect x="126" y="10.6" width="3.4" height="10.9" rx="1.7"/><rect x="132" y="9.6" width="3.4" height="12.8" rx="1.7"/><rect x="138" y="7.9" width="3.4" height="16.1" rx="1.7"/><rect x="144" y="6.6" width="3.4" height="18.7" rx="1.7"/><rect x="150" y="7.4" width="3.4" height="17.3" rx="1.7"/><rect x="156" y="6.0" width="3.4" height="19.9" rx="1.7"/><rect x="162" y="7.6" width="3.4" height="16.7" rx="1.7"/><rect x="168" y="9.7" width="3.4" height="12.6" rx="1.7"/><rect x="174" y="10.1" width="3.4" height="11.8" rx="1.7"/><rect x="180" y="7.8" width="3.4" height="16.4" rx="1.7"/><rect x="186" y="5.0" width="3.4" height="22.0" rx="1.7"/><rect x="192" y="3.4" width="3.4" height="25.1" rx="1.7"/><rect x="198" y="1.3" width="3.4" height="29.3" rx="1.7"/><rect x="204" y="2.6" width="3.4" height="26.7" rx="1.7"/><rect x="210" y="4.0" width="3.4" height="24.0" rx="1.7"/><rect x="216" y="6.1" width="3.4" height="19.7" rx="1.7"/><rect x="222" y="9.2" width="3.4" height="13.5" rx="1.7"/><rect x="228" y="12.1" width="3.4" height="7.9" rx="1.7"/><rect x="234" y="10.3" width="3.4" height="11.5" rx="1.7"/><rect x="240" y="8.2" width="3.4" height="15.6" rx="1.7"/><rect x="246" y="6.7" width="3.4" height="18.7" rx="1.7"/><rect x="252" y="6.6" width="3.4" height="18.8" rx="1.7"/><rect x="258" y="6.8" width="3.4" height="18.5" rx="1.7"/><rect x="264" y="8.8" width="3.4" height="14.5" rx="1.7"/><rect x="270" y="8.7" width="3.4" height="14.7" rx="1.7"/><rect x="276" y="10.6" width="3.4" height="10.8" rx="1.7"/><rect x="282" y="12.5" width="3.4" height="7.1" rx="1.7"/><rect x="288" y="12.5" width="3.4" height="7.0" rx="1.7"/><rect x="294" y="11.8" width="3.4" height="8.4" rx="1.7"/><rect x="300" y="10.7" width="3.4" height="10.7" rx="1.7"/><rect x="306" y="9.7" width="3.4" height="12.6" rx="1.7"/><rect x="312" y="6.9" width="3.4" height="18.2" rx="1.7"/><rect x="318" y="5.7" width="3.4" height="20.6" rx="1.7"/><rect x="324" y="6.6" width="3.4" height="18.9" rx="1.7"/><rect x="330" y="7.3" width="3.4" height="17.3" rx="1.7"/></g></svg>
+              <svg class="pc-wave played" id="pcPlayed" viewBox="0 0 336 32" preserveAspectRatio="none" aria-hidden="true">
+                <defs><linearGradient id="waveGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="336" y2="0"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#3b82f6"/><stop offset="1" stop-color="#db2777"/></linearGradient></defs>
+                <g fill="url(#waveGrad)"><rect x="0" y="12.8" width="3.4" height="6.3" rx="1.7"/><rect x="6" y="9.7" width="3.4" height="12.5" rx="1.7"/><rect x="12" y="6.3" width="3.4" height="19.5" rx="1.7"/><rect x="18" y="3.9" width="3.4" height="24.1" rx="1.7"/><rect x="24" y="1.3" width="3.4" height="29.5" rx="1.7"/><rect x="30" y="2.2" width="3.4" height="27.6" rx="1.7"/><rect x="36" y="3.4" width="3.4" height="25.3" rx="1.7"/><rect x="42" y="3.5" width="3.4" height="25.0" rx="1.7"/><rect x="48" y="7.1" width="3.4" height="17.7" rx="1.7"/><rect x="54" y="11.1" width="3.4" height="9.9" rx="1.7"/><rect x="60" y="10.5" width="3.4" height="11.0" rx="1.7"/><rect x="66" y="9.0" width="3.4" height="14.0" rx="1.7"/><rect x="72" y="6.3" width="3.4" height="19.3" rx="1.7"/><rect x="78" y="4.8" width="3.4" height="22.4" rx="1.7"/><rect x="84" y="5.4" width="3.4" height="21.3" rx="1.7"/><rect x="90" y="6.8" width="3.4" height="18.4" rx="1.7"/><rect x="96" y="9.2" width="3.4" height="13.6" rx="1.7"/><rect x="102" y="10.5" width="3.4" height="11.0" rx="1.7"/><rect x="108" y="12.1" width="3.4" height="7.8" rx="1.7"/><rect x="114" y="11.4" width="3.4" height="9.1" rx="1.7"/><rect x="120" y="11.7" width="3.4" height="8.5" rx="1.7"/><rect x="126" y="10.4" width="3.4" height="11.2" rx="1.7"/><rect x="132" y="9.9" width="3.4" height="12.1" rx="1.7"/><rect x="138" y="8.7" width="3.4" height="14.6" rx="1.7"/><rect x="144" y="6.4" width="3.4" height="19.3" rx="1.7"/><rect x="150" y="5.5" width="3.4" height="21.0" rx="1.7"/><rect x="156" y="6.1" width="3.4" height="19.7" rx="1.7"/><rect x="162" y="7.6" width="3.4" height="16.8" rx="1.7"/><rect x="168" y="9.8" width="3.4" height="12.4" rx="1.7"/><rect x="174" y="10.2" width="3.4" height="11.6" rx="1.7"/><rect x="180" y="8.1" width="3.4" height="15.7" rx="1.7"/><rect x="186" y="4.7" width="3.4" height="22.5" rx="1.7"/><rect x="192" y="2.9" width="3.4" height="26.1" rx="1.7"/><rect x="198" y="2.5" width="3.4" height="26.9" rx="1.7"/><rect x="204" y="2.7" width="3.4" height="26.6" rx="1.7"/><rect x="210" y="3.6" width="3.4" height="24.8" rx="1.7"/><rect x="216" y="6.0" width="3.4" height="19.9" rx="1.7"/><rect x="222" y="8.2" width="3.4" height="15.6" rx="1.7"/><rect x="228" y="10.8" width="3.4" height="10.3" rx="1.7"/><rect x="234" y="9.5" width="3.4" height="13.0" rx="1.7"/><rect x="240" y="6.3" width="3.4" height="19.4" rx="1.7"/><rect x="246" y="5.0" width="3.4" height="22.0" rx="1.7"/><rect x="252" y="4.9" width="3.4" height="22.3" rx="1.7"/><rect x="258" y="6.8" width="3.4" height="18.5" rx="1.7"/><rect x="264" y="8.4" width="3.4" height="15.2" rx="1.7"/><rect x="270" y="9.9" width="3.4" height="12.1" rx="1.7"/><rect x="276" y="11.4" width="3.4" height="9.1" rx="1.7"/><rect x="282" y="12.4" width="3.4" height="7.3" rx="1.7"/><rect x="288" y="11.7" width="3.4" height="8.5" rx="1.7"/><rect x="294" y="10.7" width="3.4" height="10.6" rx="1.7"/><rect x="300" y="9.7" width="3.4" height="12.6" rx="1.7"/><rect x="306" y="9.0" width="3.4" height="14.0" rx="1.7"/><rect x="312" y="7.3" width="3.4" height="17.4" rx="1.7"/><rect x="318" y="6.1" width="3.4" height="19.9" rx="1.7"/><rect x="324" y="7.3" width="3.4" height="17.3" rx="1.7"/><rect x="330" y="7.0" width="3.4" height="18.0" rx="1.7"/></g>
+              </svg>
+              <span class="pc-thumb" id="pcThumb"></span>
+            </div>
+            <div class="pc-times"><span id="pcCur">1:14</span><span>3:42</span></div>
           </div>
 
           <div class="pc-controls">
             <button class="pc-ctrl" aria-label="Previous"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M19 5v14L8 12l11-7zM6 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
             <button class="pc-play-blob" id="pcPlayBtn" aria-label="Play">
-              <svg viewBox="0 0 104 104" class="blob-svg">
+              <svg viewBox="0 0 104 104" class="blob-svg" aria-hidden="true">
                 <path class="blob-fill" d="M 96.20,52.00 C 96.20,52.83 95.86,53.69 95.33,54.48 C 94.80,55.26 93.89,56.02 93.03,56.71 C 92.16,57.39 91.03,58.00 90.14,58.60 C 89.24,59.20 88.28,59.71 87.65,60.29 C 87.02,60.87 86.55,61.42 86.35,62.09 C 86.15,62.75 86.26,63.47 86.47,64.30 C 86.69,65.13 87.22,66.08 87.65,67.07 C 88.08,68.05 88.70,69.18 89.06,70.22 C 89.42,71.27 89.77,72.39 89.79,73.34 C 89.81,74.29 89.63,75.20 89.18,75.90 C 88.74,76.59 87.98,77.13 87.11,77.51 C 86.24,77.88 85.07,78.03 83.97,78.14 C 82.87,78.25 81.59,78.15 80.51,78.17 C 79.44,78.19 78.35,78.10 77.51,78.25 C 76.66,78.40 75.97,78.60 75.44,79.06 C 74.92,79.51 74.62,80.17 74.35,80.99 C 74.08,81.80 74.02,82.88 73.85,83.95 C 73.67,85.01 73.59,86.29 73.33,87.37 C 73.06,88.44 72.75,89.58 72.25,90.38 C 71.76,91.19 71.11,91.86 70.36,92.21 C 69.61,92.55 68.68,92.60 67.75,92.44 C 66.81,92.29 65.75,91.78 64.76,91.28 C 63.78,90.77 62.75,90.00 61.84,89.43 C 60.92,88.86 60.06,88.21 59.27,87.87 C 58.48,87.54 57.78,87.34 57.09,87.44 C 56.41,87.53 55.80,87.93 55.13,88.47 C 54.47,89.01 53.82,89.88 53.11,90.69 C 52.39,91.49 51.62,92.52 50.82,93.28 C 50.02,94.04 49.14,94.83 48.29,95.24 C 47.43,95.65 46.53,95.87 45.71,95.75 C 44.89,95.63 44.08,95.17 43.38,94.53 C 42.68,93.90 42.06,92.90 41.50,91.94 C 40.94,90.99 40.50,89.78 40.04,88.81 C 39.58,87.84 39.21,86.82 38.72,86.11 C 38.24,85.40 37.76,84.85 37.13,84.56 C 36.49,84.28 35.77,84.28 34.92,84.37 C 34.07,84.47 33.05,84.86 32.01,85.14 C 30.98,85.43 29.78,85.89 28.69,86.09 C 27.60,86.29 26.44,86.48 25.50,86.37 C 24.56,86.25 23.68,85.94 23.06,85.40 C 22.43,84.86 22.00,84.04 21.75,83.12 C 21.51,82.21 21.53,81.03 21.57,79.92 C 21.62,78.82 21.90,77.57 22.04,76.50 C 22.17,75.43 22.41,74.37 22.39,73.51 C 22.36,72.66 22.26,71.94 21.88,71.35 C 21.51,70.77 20.90,70.38 20.13,70.00 C 19.36,69.62 18.30,69.40 17.27,69.08 C 16.24,68.76 14.98,68.49 13.96,68.08 C 12.94,67.66 11.85,67.19 11.13,66.58 C 10.40,65.98 9.82,65.24 9.59,64.45 C 9.36,63.66 9.44,62.73 9.73,61.83 C 10.02,60.93 10.67,59.95 11.31,59.04 C 11.94,58.14 12.86,57.24 13.55,56.41 C 14.24,55.59 15.02,54.82 15.46,54.09 C 15.90,53.35 16.20,52.70 16.20,52.00 C 16.20,51.30 15.90,50.65 15.46,49.91 C 15.02,49.18 14.24,48.41 13.55,47.59 C 12.86,46.76 11.94,45.86 11.31,44.96 C 10.67,44.05 10.02,43.07 9.73,42.17 C 9.44,41.27 9.36,40.34 9.59,39.55 C 9.82,38.76 10.40,38.02 11.13,37.42 C 11.85,36.81 12.94,36.34 13.96,35.92 C 14.98,35.51 16.24,35.24 17.27,34.92 C 18.30,34.60 19.36,34.38 20.13,34.00 C 20.90,33.62 21.51,33.23 21.88,32.65 C 22.26,32.06 22.36,31.34 22.39,30.49 C 22.41,29.63 22.17,28.57 22.04,27.50 C 21.90,26.43 21.62,25.18 21.57,24.08 C 21.53,22.97 21.51,21.79 21.75,20.88 C 22.00,19.96 22.43,19.14 23.06,18.60 C 23.68,18.06 24.56,17.75 25.50,17.63 C 26.44,17.52 27.60,17.71 28.69,17.91 C 29.78,18.11 30.98,18.57 32.01,18.86 C 33.05,19.14 34.07,19.53 34.92,19.63 C 35.77,19.72 36.49,19.72 37.13,19.44 C 37.76,19.15 38.24,18.60 38.72,17.89 C 39.21,17.18 39.58,16.16 40.04,15.19 C 40.50,14.22 40.94,13.01 41.50,12.06 C 42.06,11.10 42.68,10.10 43.38,9.47 C 44.08,8.83 44.89,8.37 45.71,8.25 C 46.53,8.13 47.43,8.35 48.29,8.76 C 49.14,9.17 50.02,9.96 50.82,10.72 C 51.62,11.48 52.39,12.51 53.11,13.31 C 53.82,14.12 54.47,14.99 55.13,15.53 C 55.80,16.07 56.41,16.47 57.09,16.56 C 57.78,16.66 58.48,16.46 59.27,16.13 C 60.06,15.79 60.92,15.14 61.84,14.57 C 62.75,14.00 63.78,13.23 64.76,12.72 C 65.75,12.22 66.81,11.71 67.75,11.56 C 68.68,11.40 69.61,11.45 70.36,11.79 C 71.11,12.14 71.76,12.81 72.25,13.62 C 72.75,14.42 73.06,15.56 73.33,16.63 C 73.59,17.71 73.67,18.99 73.85,20.05 C 74.02,21.12 74.08,22.20 74.35,23.01 C 74.62,23.83 74.92,24.49 75.44,24.94 C 75.97,25.40 76.66,25.60 77.51,25.75 C 78.35,25.90 79.44,25.81 80.51,25.83 C 81.59,25.85 82.87,25.75 83.97,25.86 C 85.07,25.97 86.24,26.12 87.11,26.49 C 87.98,26.87 88.74,27.41 89.18,28.10 C 89.63,28.80 89.81,29.71 89.79,30.66 C 89.77,31.61 89.42,32.73 89.06,33.78 C 88.70,34.82 88.08,35.95 87.65,36.93 C 87.22,37.92 86.69,38.87 86.47,39.70 C 86.26,40.53 86.15,41.25 86.35,41.91 C 86.55,42.58 87.02,43.13 87.65,43.71 C 88.28,44.29 89.24,44.80 90.14,45.40 C 91.03,46.00 92.16,46.61 93.03,47.29 C 93.89,47.98 94.80,48.74 95.33,49.52 C 95.86,50.31 96.20,51.17 96.20,52.00 Z" fill="#fff"/>
               </svg>
               <svg class="pc-play-icon icon-play" width="22" height="22" viewBox="0 0 24 24" fill="#12131f"><path d="M8 5v14l12-7z"/></svg>
-              <svg class="pc-play-icon icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="#12131f" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="pc-play-icon icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="#12131f"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
             </button>
 
             <button class="pc-ctrl" aria-label="Next"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 5v14l11-7L5 5zM18 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -248,13 +281,12 @@
             <button class="pc-tool" aria-label="Sleep timer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1110 4.2 6.8 6.8 0 0020 14.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
             <button class="pc-tool" id="lyricsToggle" aria-label="Lyrics" aria-pressed="false"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
             <button class="pc-tool" aria-label="Comments"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 12a8 8 0 01-11.5 7.2L4 20l1.1-4.2A8 8 0 1121 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-            <button class="pc-tool pc-tool-active" aria-label="Shuffle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h4l7 12h5m0 0l-3-3m3 3l-3 3M4 18h4l3-5m2-4l3-5h5m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button class="pc-tool" aria-label="Repeat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 014-4h14M7 22l-4-4 4-4m14 3v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="pc-tool" data-toggle aria-label="Shuffle" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h4l7 12h5m0 0l-3-3m3 3l-3 3M4 18h4l3-5m2-4l3-5h5m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="pc-tool" data-toggle aria-label="Repeat" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 014-4h14M7 22l-4-4 4-4m14 3v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <button class="pc-tool pc-tool-round" aria-label="More"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
           </div>
         </div>
 
-        <!-- depth chips that separate from the card as you scroll -->
         <div class="depth-chip chip-queue" aria-hidden="true">
           <span class="chip-label">Up next</span>
           <span class="chip-title">Night Drive</span>
@@ -271,6 +303,23 @@
     </div>
   </section>
 
+  <!-- ============ CTA ============ -->
+  <section class="cta" data-pause>
+    <div class="cta-card" data-fade>
+      <p class="eyebrow center" style="color:rgba(255,255,255,.7)"><span class="eyebrow-dot"></span>Desktop &amp; Mobile</p>
+      <h2>Ready to press play?</h2>
+      <p>One account, every device — your music, tuned to you, online or off.</p>
+      <div class="cta-actions">
+        <a href="https://nexappog.vercel.app/shop/nexmusic" target="_blank" rel="noopener" class="btn btn-light">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Get NexMusic
+        </a>
+        <a href="#features" class="btn btn-line-light">Explore features</a>
+      </div>
+      <div class="cta-bars" aria-hidden="true"><i style="--lo:0.42;--hi:0.89;animation-delay:-1.35s"></i><i style="--lo:0.29;--hi:0.59;animation-delay:-1.42s"></i><i style="--lo:0.25;--hi:0.90;animation-delay:-1.75s"></i><i style="--lo:0.27;--hi:0.70;animation-delay:-1.70s"></i><i style="--lo:0.37;--hi:0.59;animation-delay:-0.23s"></i><i style="--lo:0.20;--hi:0.95;animation-delay:-1.45s"></i><i style="--lo:0.19;--hi:0.91;animation-delay:-1.76s"></i><i style="--lo:0.35;--hi:0.68;animation-delay:-0.99s"></i><i style="--lo:0.19;--hi:0.51;animation-delay:-1.75s"></i><i style="--lo:0.34;--hi:0.76;animation-delay:-1.68s"></i><i style="--lo:0.28;--hi:0.94;animation-delay:-1.49s"></i><i style="--lo:0.21;--hi:0.63;animation-delay:-0.53s"></i><i style="--lo:0.22;--hi:0.79;animation-delay:-0.47s"></i><i style="--lo:0.28;--hi:0.57;animation-delay:-1.64s"></i><i style="--lo:0.26;--hi:0.73;animation-delay:-1.05s"></i><i style="--lo:0.42;--hi:0.71;animation-delay:-1.65s"></i><i style="--lo:0.30;--hi:0.77;animation-delay:-0.94s"></i><i style="--lo:0.16;--hi:0.72;animation-delay:-0.33s"></i><i style="--lo:0.15;--hi:0.90;animation-delay:-0.31s"></i><i style="--lo:0.29;--hi:0.86;animation-delay:-1.00s"></i><i style="--lo:0.25;--hi:0.76;animation-delay:-1.00s"></i><i style="--lo:0.39;--hi:0.55;animation-delay:-1.01s"></i><i style="--lo:0.22;--hi:0.64;animation-delay:-1.39s"></i><i style="--lo:0.30;--hi:0.78;animation-delay:-1.37s"></i><i style="--lo:0.42;--hi:0.72;animation-delay:-1.10s"></i><i style="--lo:0.30;--hi:0.76;animation-delay:-1.25s"></i><i style="--lo:0.29;--hi:0.77;animation-delay:-0.86s"></i><i style="--lo:0.43;--hi:0.85;animation-delay:-1.58s"></i><i style="--lo:0.43;--hi:0.63;animation-delay:-1.01s"></i><i style="--lo:0.43;--hi:0.92;animation-delay:-0.25s"></i><i style="--lo:0.19;--hi:0.72;animation-delay:-0.13s"></i><i style="--lo:0.22;--hi:0.54;animation-delay:-1.21s"></i><i style="--lo:0.39;--hi:0.95;animation-delay:-0.28s"></i><i style="--lo:0.36;--hi:0.83;animation-delay:-0.26s"></i><i style="--lo:0.41;--hi:0.98;animation-delay:-0.40s"></i><i style="--lo:0.44;--hi:0.70;animation-delay:-0.88s"></i><i style="--lo:0.45;--hi:0.92;animation-delay:-0.29s"></i><i style="--lo:0.28;--hi:0.76;animation-delay:-0.61s"></i><i style="--lo:0.21;--hi:0.66;animation-delay:-1.30s"></i><i style="--lo:0.16;--hi:0.78;animation-delay:-0.79s"></i><i style="--lo:0.16;--hi:0.67;animation-delay:-1.12s"></i><i style="--lo:0.30;--hi:0.53;animation-delay:-1.77s"></i><i style="--lo:0.39;--hi:0.99;animation-delay:-0.19s"></i><i style="--lo:0.23;--hi:0.52;animation-delay:-1.40s"></i></div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -278,7 +327,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="#top" class="brand">
-        <img src="assets/logo.webp" alt="NexMusic" class="brand-mark">
+        <img src="assets/logo-nav.webp" alt="" width="42" height="30" class="brand-mark" loading="lazy">
         <span class="brand-name">Nex<em>Music</em></span>
       </a>
       <p>Music streaming platform · Powered by <strong>NexApp</strong></p>
@@ -307,14 +356,14 @@
     </div>
   </div>
 
+  <div class="footer-mark" aria-hidden="true">NexMusic</div>
+
   <div class="footer-bottom">
-    <p>© <span id="year"></span> NexApp. All rights reserved.</p>
+    <p>© <span id="year">2026</span> NexApp. All rights reserved.</p>
     <p>Developed by <strong>MR. ARX</strong></p>
   </div>
 </footer>
 
-<script src="assets/vendor/gsap.min.js"></script>
-<script src="assets/vendor/ScrollTrigger.min.js"></script>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>

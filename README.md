@@ -8,10 +8,11 @@ Static site — no build step, no dependencies. Just HTML, CSS, and JS.
 index.html                  → home page
 privacy-policy.html         → Privacy Policy
 terms-and-conditions.html   → Terms & Conditions
-style.css                   → design system + styles (light theme)
-script.js                   → nav, 3D tilt, GSAP ScrollTrigger scroll sequence, player controls
-assets/                     → logo, cover art, favicon
-assets/vendor/               → GSAP + ScrollTrigger, vendored locally (no external CDN calls)
+style.css                   → design system + styles (light + dark theme)
+script.js                   → theme toggle, nav, 3D tilt, pinned-player scroll scene, live player (no libraries)
+assets/                     → optimized logo, cover art, favicon, icons
+assets/fonts/               → Sora + Inter, self-hosted & subset (no Google Fonts request)
+vercel.json                 → cache + security headers
 ```
 
 The "Get NexMusic" / "Get the app" buttons link out to
@@ -22,12 +23,11 @@ The Privacy Policy and Terms & Conditions are original starting-point drafts —
 have them reviewed before relying on them for App Store / Play Store submission
 or other legal compliance.
 
-## About the 3D scroll effect
-The "Now Playing" section pins in place while you scroll and rotates from an angled
-3D perspective into a flat, face-on card, with small info chips popping out in depth
-around it. It's built with GSAP ScrollTrigger driving CSS 3D transforms — no WebGL
-or 3D models needed. On touch devices (phones/tablets) it gracefully falls back to a
-flat, static card so it stays fast and doesn't fight with normal scrolling.
+## What's new (v2)
+- **Speed:** removed GSAP (~115 KB) and Google Fonts; fonts are self-hosted (31 KB total), images resized, total first load ≈ 160 KB. CLS 0.
+- **Animation:** aurora hero, word-by-word headline, smoothed 3D tilt, animated bento feature cards with cursor spotlight, scroll progress bar, pinned 3D "Now playing" scene, live player (waveform, timer, lyrics, click-to-seek), CTA section.
+- **Dark mode:** toggle in the nav; follows the system setting by default and remembers the choice.
+- Infinite animations pause when off-screen; `prefers-reduced-motion` is respected; mobile gets a flat static player.
 
 ## Deploy on Vercel (from GitHub)
 
