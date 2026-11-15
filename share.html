@@ -53,9 +53,11 @@
     <div class="by" id="by"></div>
     <img class="cover" id="cover" alt="" style="display:none">
     <div class="btns">
-      <a class="btn primary" id="listen" href="#" style="display:none">▶ Listen on YouTube Music</a>
+      <a class="btn primary" id="app" href="#" style="display:none">♪ Open in the NexMusic app</a>
+      <a class="btn ghost" id="listen" href="#" style="display:none">▶ Listen on YouTube Music</a>
       <a class="btn ghost" id="open" href="#" style="display:none">Open on YouTube</a>
     </div>
+    <p class="foot" id="noapp" style="display:none">App didn't open? <a href="/" style="color:var(--accent)">Get NexMusic</a> — it plays these links directly, on Windows and Android.</p>
     <p class="foot">Shared from <strong>NexMusic</strong> · <a href="/">nexmusic.app</a><br>Recipients with the NexMusic app open this link straight in the app.</p>
   </main>
 
@@ -69,6 +71,31 @@
   var coverEl = document.getElementById('cover');
   var listen = document.getElementById('listen');
   var open = document.getElementById('open');
+  var appBtn = document.getElementById('app');
+  var noapp = document.getElementById('noapp');
+  var isAndroid = /android/i.test(navigator.userAgent);
+
+  // nexmusic:// opens the Windows app (protocol registered by the desktop app)
+  // and the Android app (intent:// with package fallback when it isn't installed).
+  function setAppLink(kind, id, webFallback) {
+    var schemeLink = 'nexmusic://' + kind;
+    if (kind === 'watch') schemeLink += '?v=' + encodeURIComponent(id);
+    else if (kind === 'playlist') schemeLink += '?list=' + encodeURIComponent(id);
+    else schemeLink += '/' + encodeURIComponent(id);
+    if (isAndroid) {
+      appBtn.href = 'intent://' + schemeLink.slice('nexmusic://'.length) +
+        '#Intent;scheme=nexmusic;package=com.nexapp.nexmusic;S.browser_fallback_url=' +
+        encodeURIComponent(webFallback || location.href) + ';end';
+    } else {
+      appBtn.href = schemeLink;
+    }
+    appBtn.style.display = 'flex';
+    appBtn.addEventListener('click', function () {
+      setTimeout(function () {
+        if (document.visibilityState === 'visible') noapp.style.display = 'block';
+      }, 2500);
+    });
+  }
 
   function setCard(kind, title, by, cover) {
     kindEl.textContent = kind;
@@ -88,6 +115,7 @@
     setCard('SONG', 'Loading…', '', '');
     var yt = 'https://www.youtube.com/watch?v=' + encodeURIComponent(id);
     var ytm = 'https://music.youtube.com/watch?v=' + encodeURIComponent(id);
+    setAppLink('watch', id, ytm);
     listen.href = ytm; listen.style.display = 'flex';
     open.href = yt; open.style.display = 'flex';
     // Try to enrich with the title / channel / thumbnail (best effort).
@@ -100,11 +128,13 @@
         .catch(function () { setCard('SONG', 'A shared song', 'Tap below to start listening', ''); });
     } catch (e) { setCard('SONG', 'A shared song', '', ''); }
   } else if (path.endsWith('/playlist') && list) {
-    setCard('PLAYLIST', 'Shared playlist', 'Opens in YouTube Music');
+    setCard('PLAYLIST', 'Shared playlist', 'Opens in the NexMusic app');
+    setAppLink('playlist', list, 'https://music.youtube.com/playlist?list=' + encodeURIComponent(list));
     listen.href = 'https://music.youtube.com/playlist?list=' + encodeURIComponent(list);
     listen.style.display = 'flex';
   } else if (channel) {
-    setCard('ARTIST', 'Shared artist', 'Opens in YouTube Music');
+    setCard('ARTIST', 'Shared artist', 'Opens in the NexMusic app');
+    setAppLink('channel', channel, 'https://music.youtube.com/channel/' + encodeURIComponent(channel));
     listen.href = 'https://music.youtube.com/channel/' + encodeURIComponent(channel);
     listen.textContent = '♪ View on YouTube Music';
     listen.style.display = 'flex';
