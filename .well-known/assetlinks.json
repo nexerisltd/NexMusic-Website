@@ -1,11 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.nexapp.nexmusic",
       "sha256_cert_fingerprints": [
-        "PLACEHOLDER_REPLACED_AUTOMATICALLY_BY_NEXMUSIC_ANDROID_CI"
+        "3d4286739b7ef3152accd6f50126b8ee04acfa264d5d2d7a44787e0c3669cd1f"
       ]
     }
   }
