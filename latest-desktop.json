@@ -1,0 +1,23 @@
+{
+  "tag": "v0.12.0",
+  "version": "0.12.0",
+  "page": "https://github.com/nexerisltd/NexMusic-Website/releases/tag/latest-desktop",
+  "notes": "**Full Changelog**: https://github.com/nexerisltd/NexMusic-Desktop/compare/v0.11.0...v0.12.0",
+  "assets": {
+    "linux": {
+      "name": "NexMusic-linux-amd64.deb",
+      "size": 12254594,
+      "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-linux-amd64.deb"
+    },
+    "macos": {
+      "name": "NexMusic-macos.dmg",
+      "size": 27285546,
+      "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-macos.dmg"
+    },
+    "windows": {
+      "name": "NexMusic-Setup-x64.exe",
+      "size": 30231967,
+      "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-Setup-x64.exe"
+    }
+  }
+}
