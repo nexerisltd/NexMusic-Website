@@ -4,16 +4,6 @@
   "page": "https://github.com/nexerisltd/NexMusic-Website/releases/tag/latest-desktop",
   "notes": "Bluetooth headset buttons (AirPods-style stem taps), any YouTube playlist imports, playlist first-page fix.",
   "assets": {
-    "linux": {
-      "name": "NexMusic-linux-amd64.deb",
-      "size": 12254594,
-      "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-linux-amd64.deb"
-    },
-    "macos": {
-      "name": "NexMusic-macos.dmg",
-      "size": 27285546,
-      "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-macos.dmg"
-    },
     "windows": {
       "name": "NexMusic-Setup-x64.exe",
       "size": 26551367,
