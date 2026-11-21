@@ -1,12 +1,12 @@
 {
-  "tag": "v0.12.1",
-  "version": "0.12.1",
+  "tag": "v0.12.2",
+  "version": "0.12.2",
   "page": "https://github.com/nexerisltd/NexMusic-Website/releases/tag/latest-desktop",
-  "notes": "Bluetooth headset buttons (AirPods-style stem taps), any YouTube playlist imports, playlist first-page fix.",
+  "notes": "# NexMusic Desktop 0.12.2 – lyrics fixed\n\n## Lyrics load again\n- Since v0.11.0 every lyrics fetch crashed with a null-check error before any\n  provider was contacted (the provider-order code removed a map entry and then\n  tried to read it again). The order setting now applies correctly and lyrics\n  (LRCLIB / KuGou / YouTube) load on every track.",
   "assets": {
     "windows": {
       "name": "NexMusic-Setup-x64.exe",
-      "size": 26551367,
+      "size": 26551424,
       "url": "https://github.com/nexerisltd/NexMusic-Website/releases/download/latest-desktop/NexMusic-Setup-x64.exe"
     }
   }
